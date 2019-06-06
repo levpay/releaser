@@ -68,4 +68,11 @@ func new(c *cli.Context) {
 	}
 	// resp = resp[:len(resp)-1]
 	fmt.Print(resp)
+	cmd = exec.Command("git", "tag", "-a", resp, "-m", "some message")
+	stdout, err = cmd.CombinedOutput()
+	if err != nil {
+		log.Fatal(string(stdout), err)
+	}
+	fmt.Println(string(stdout))
+	// goreleaser --rm-dist --config=../releaser/goreleaser.yml
 }
