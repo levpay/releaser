@@ -54,5 +54,6 @@ func new(c *cli.Context) {
 	if err != nil {
 		log.Fatal(string(stdout), err)
 	}
-	fmt.Println(string(stdout))
+	stdoutStr := string(stdout)
+	fmt.Println(stdoutStr[:len(stdoutStr)-1])
 }
