@@ -59,7 +59,6 @@ func new(c *cli.Context) {
 	if err != nil {
 		log.Fatal(string(stdout), err)
 	}
-	fmt.Println(string(stdout))
 	question := fmt.Sprintf("Chose the new semantic version of the app %s: ", c.Args()[0])
 	fmt.Print(question)
 	reader := bufio.NewReader(os.Stdin)
@@ -71,6 +70,7 @@ func new(c *cli.Context) {
 		log.Fatal("response cannot be empty")
 	}
 	fmt.Print(resp)
+	resp = resp[:len(resp)-1]
 	cmd = exec.Command("git", "tag", "-a", resp, "-m", "some message")
 	stdout, err = cmd.CombinedOutput()
 	if err != nil {
