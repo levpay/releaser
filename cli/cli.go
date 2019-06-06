@@ -77,7 +77,9 @@ func new(c *cli.Context) {
 		log.Fatal(string(stdout), err)
 	}
 	fmt.Println(string(stdout))
-	cmd = exec.Command("goreleaser", "--rm-dist", "--config=../releaser/goreleaser.yml")
+	path := os.Getenv("GOPATH") + "src/github.com/levpay/releaser/goreleaser.yml"
+	config := "--config=" + path
+	cmd = exec.Command("goreleaser", "--rm-dist", config)
 	stdout, err = cmd.CombinedOutput()
 	if err != nil {
 		log.Fatal(string(stdout), err)
