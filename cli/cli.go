@@ -66,7 +66,6 @@ func new(c *cli.Context) {
 	if len(resp) == 0 {
 		log.Fatal("response cannot be empty")
 	}
-	// resp = resp[:len(resp)-1]
 	fmt.Print(resp)
 	cmd = exec.Command("git", "tag", "-a", resp, "-m", "some message")
 	stdout, err = cmd.CombinedOutput()
@@ -74,5 +73,10 @@ func new(c *cli.Context) {
 		log.Fatal(string(stdout), err)
 	}
 	fmt.Println(string(stdout))
-	// goreleaser --rm-dist --config=../releaser/goreleaser.yml
+	cmd = exec.Command("goreleaser", "--rm-dist", "--config=../releaser/goreleaser.yml")
+	stdout, err = cmd.CombinedOutput()
+	if err != nil {
+		log.Fatal(string(stdout), err)
+	}
+	fmt.Println(string(stdout))
 }
