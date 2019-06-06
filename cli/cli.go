@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"os"
@@ -54,6 +55,17 @@ func new(c *cli.Context) {
 	if err != nil {
 		log.Fatal(string(stdout), err)
 	}
-	stdoutStr := string(stdout)
-	fmt.Println(stdoutStr[:len(stdoutStr)-1])
+	fmt.Println(string(stdout))
+	question := fmt.Sprintf("Chose the new semantic version of the app %s: ", c.Args()[0])
+	fmt.Print(question)
+	reader := bufio.NewReader(os.Stdin)
+	resp, err := reader.ReadString('\n')
+	if err != nil {
+		log.Fatal(err)
+	}
+	if len(resp) == 0 {
+		log.Fatal("response cannot be empty")
+	}
+	// resp = resp[:len(resp)-1]
+	fmt.Print(resp)
 }
