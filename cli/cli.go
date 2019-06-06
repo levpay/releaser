@@ -45,7 +45,11 @@ func new(c *cli.Context) {
 		fmt.Println(c.Command.Usage)
 		return
 	}
-	err := os.Chdir(fmt.Sprintf("../%s", c.Args()[0]))
+	wd, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = os.Chdir(fmt.Sprintf("../%s", c.Args()[0]))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -79,4 +83,7 @@ func new(c *cli.Context) {
 		log.Fatal(string(stdout), err)
 	}
 	fmt.Println(string(stdout))
+	if err = os.Chdir(wd); err != nil {
+		log.Fatal(err)
+	}
 }
