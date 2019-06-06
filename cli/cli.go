@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
 
 	"github.com/urfave/cli"
 )
@@ -29,9 +30,9 @@ func info() {
 func commands() {
 	app.Commands = []cli.Command{
 		{
-			Name:    "--new",
-			Aliases: []string{"-n"},
-			Usage:   "Release a new app",
+			Name:    "new",
+			Aliases: []string{"n"},
+			Usage:   "Release a new app\t\t$ releaser n/new <app name>",
 			Action:  new,
 		},
 	}
@@ -43,4 +44,14 @@ func new(c *cli.Context) {
 		fmt.Println(c.Command.Usage)
 		return
 	}
+	err := os.Chdir(fmt.Sprintf("../%s", c.Args()[0]))
+	if err != nil {
+		log.Fatal(err)
+	}
+	cmd := exec.Command("ls")
+	stdout, err := cmd.CombinedOutput()
+	if err != nil {
+		log.Fatal(string(stdout), err)
+	}
+	fmt.Println(string(stdout))
 }
