@@ -48,7 +48,8 @@ func new(c *cli.Context) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	cmd := exec.Command("ls")
+	fmt.Printf("Latest release of %s: ", c.Args()[0])
+	cmd := exec.Command("git", "describe", "--tags", "--abbrev=0")
 	stdout, err := cmd.CombinedOutput()
 	if err != nil {
 		log.Fatal(string(stdout), err)
