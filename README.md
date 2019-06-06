@@ -4,7 +4,7 @@ App release manager for Levpay's applications. Allows tagging versions without a
 
 ## Dependancy
 
-It strongly depends on `goreleaser` CLI to build your apps.
+It strongly depends on git and [goreleaser](https://goreleaser.com/) CLI to build your apps.
 
 ## Why
 
