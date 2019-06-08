@@ -59,6 +59,7 @@ func new(c *cli.Context) {
 	if err != nil {
 		log.Fatal(string(stdout), err)
 	}
+	fmt.Println(string(stdout))
 	question := fmt.Sprintf("Chose the new semantic version of the app %s: ", c.Args()[0])
 	fmt.Print(question)
 	reader := bufio.NewReader(os.Stdin)
@@ -77,7 +78,7 @@ func new(c *cli.Context) {
 		log.Fatal(string(stdout), err)
 	}
 	fmt.Println(string(stdout))
-	path := os.Getenv("GOPATH") + "src/github.com/levpay/releaser/goreleaser.yml"
+	path := os.Getenv("GOPATH") + "/src/github.com/levpay/releaser/goreleaser.yml"
 	config := "--config=" + path
 	cmd = exec.Command("goreleaser", "--rm-dist", config)
 	stdout, err = cmd.CombinedOutput()
