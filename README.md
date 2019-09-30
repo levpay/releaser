@@ -18,6 +18,10 @@ It allows us to release across multiple apps without the need of adding a `gorel
 
 ## Usage
 
+### Token
+
+You’ll need to export either a `GITHUB_TOKEN` or `GITLAB_TOKEN` environment variable, which should contain a valid GitHub token with the repo scope or GitLab token with api scope. It will be used to deploy releases to your GitHub/GitLab repository. You can create a token here for GitHub or here for GitLab ([goreleaser](https://goreleaser.com/quick-start/))
+
 ### New release of an app
 
 It will ask you about your new version:
