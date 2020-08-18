@@ -25,7 +25,7 @@ func info() {
 	app.Name = "Levpay Release CLI"
 	app.Usage = "Levpay's release app manager"
 	app.Author = "Levpay"
-	app.Version = "1.0.0"
+	app.Version = "1.1.0"
 }
 
 func commands() {
